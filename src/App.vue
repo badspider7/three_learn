@@ -1,27 +1,40 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js + TypeScript App"/>
+  <div class="three-canvas" ref="renderTarget"></div>
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue';
-import HelloWorld from './components/HelloWorld.vue';
+import { defineComponent, ref, onMounted } from "vue";
+import { TEngine } from "./assets/ts/TEngine";
 
 export default defineComponent({
-  name: 'App',
-  components: {
-    HelloWorld
-  }
+  setup() {
+    const renderTarget = ref(null);
+
+    onMounted(() => {
+      const TE = new TEngine(renderTarget.value!);
+    });
+
+    return {
+      renderTarget,
+    };
+  },
 });
 </script>
 
 <style lang="scss">
+.three-canvas {
+  width: 100%;
+  height: 100%;
+}
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+  height: 100vh;
+  width: 100vw;
+  margin: 0;
+  padding: 0;
+}
+html,
+body {
+  margin: 0;
+  padding: 0;
 }
 </style>
