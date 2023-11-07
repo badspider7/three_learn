@@ -1,4 +1,6 @@
-import { WebGLRenderer,Scene,PerspectiveCamera,Mesh,BoxGeometry,MeshBasicMaterial } from 'three'
+import { WebGLRenderer, Scene, PerspectiveCamera, Mesh, BoxGeometry, MeshBasicMaterial } from 'three'
+import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls'
+
 export class TEngine{
 
     private dom: HTMLElement
@@ -23,9 +25,14 @@ export class TEngine{
         //添加物体 mesh -> 网格 + 材质
         const cube = new Mesh(
             new BoxGeometry(1, 1, 1),
-            new MeshBasicMaterial({ color: 0x00ff00 })
+            new MeshBasicMaterial({ color: 0xffaacc })
         )
         this.scene.add(cube);
+
+
+        //轨道控制器
+        const controls = new OrbitControls(this.camera, this.renderer.domElement);
+        controls.update();
         //渲染
         this.renderer.render(this.scene, this.camera);
     }
