@@ -2,8 +2,6 @@ import {
     Mesh,
     BoxGeometry,
     Object3D,
-    Line,
-    Points,
     MeshStandardMaterial,
 
 
@@ -24,6 +22,9 @@ stage.position.y = -5;
 //立方体
 const box: Mesh = new Mesh(
     new BoxGeometry(20, 20, 20),
+    new MeshStandardMaterial({color:'rgb(255,255,255)'})
 )
 
 box.position.y = 10;
+
+basicObjectList.push(stage, box);
